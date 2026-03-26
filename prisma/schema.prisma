@@ -1,0 +1,34 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model user{
+  id  String @id @default(cuid())
+  name String?
+  email String @unique
+  emailVerfied DateTime?
+  image String?
+  password String?
+
+  userNetflix UserNetflix[]
+
+  createAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model UserNetflix{
+  id  String @id @default(cuid())
+  profileName String
+  avatarUrl String
+
+  userId String
+  user user @relation(fields: [userId], references:[id], onDelete: Cascade)
+
+  createAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
