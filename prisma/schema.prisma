@@ -23,7 +23,7 @@ model user{
 
 model UserNetflix{
   id  String @id @default(cuid())
-  profileName String
+  profileName String?
   avatarUrl String
 
   userId String
@@ -31,4 +31,30 @@ model UserNetflix{
 
   createAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Movie{
+  id String @id @default(cuid())
+  title String
+  thumbnailUrl String
+  genre String[]
+  duration String
+  age String
+  trailerVideo String
+  movieVideo String
+
+  created DateTime @default(now())
+}
+
+model PopularMovie{
+  id String @id @default(cuid())
+  title String @unique
+  thumbnailUrl String
+  genre String[]
+  duration String
+  age String
+  trailerVideo String
+  movieVideo String
+
+  ranking Int
 }

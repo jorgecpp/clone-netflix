@@ -1,10 +1,14 @@
 "use client"
 
-import { BellRing, Search, User } from "lucide-react";
+import { BellRing, Search } from "lucide-react";
 import { Logo } from "../../logo";
 import { ItemsNavbar } from "@/data/itemsNavbar";
 import Link from "next/link";
 import { useScroll } from "@/hooks/useScrollNavbar";
+
+import { SelectProfile } from "../../selectProfile";
+
+
 
 export function NavBarDesktop(){
     return(
@@ -25,7 +29,9 @@ export function NavBarDesktop(){
             <div className="flex items-center gap-4">
                 <Search className="cursor-pointer hover:text-gray-300 transition-all duration-300"/>
                 <BellRing className="cursor-pointer hover:text-gray-300 transition-all duration-300"/>
-                <User className="cursor-pointer hover:text-gray-300 transition-all duration-300"/>
+                
+                <SelectProfile/>
+                    
             </div>
 
         </div>

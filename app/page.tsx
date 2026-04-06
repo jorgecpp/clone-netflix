@@ -1,16 +1,16 @@
-import { Ranking } from "@/components/Ranking";
+import { Ranking } from "./(routes)/(home)/rankingMovies";
 import { Navbar } from "@/components/shared/navBar";
-import { SliderVideo } from "@/components/SliderVideo";
+import { SliderVideo } from "./(routes)/(home)/sliderVideo";
+import { VideoBackground } from "@/app/(routes)/(home)/videoBackground";
+import { ListMovies } from "./(routes)/(home)/listMovies";
+
+import { Toaster } from "@/components/ui/sonner";
 
 export default function Home() {
   return (
-    <>
+    <div>
       <div className="relative h-200 w-full overflow-hidden">
-        <video autoPlay loop muted playsInline className="
-          absolute top-0 left-0 w-full h-full object-cover -z-10">
-          <source src="/videos/video-1.mp4" type="video/mp4"/>
-        </video>
-        
+        <VideoBackground/>
         <Navbar></Navbar>
         <SliderVideo/>
         <div className="top-0 left-0 w-full h-full 
@@ -21,9 +21,17 @@ export default function Home() {
         </div>
       </div>
 
-    <div>
-      <Ranking/>
+      <div>
+        <Ranking/>
+      </div>
+
+      
+
+      <div className="mt-10">
+        <ListMovies/>
+      </div>
+
+      <Toaster/>
     </div>
-    </>
   );
 }

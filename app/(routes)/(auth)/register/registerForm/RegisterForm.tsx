@@ -25,6 +25,7 @@ export function RegisterForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      name: "",
       email: "",
       password: "",
       repetPassword: ""
@@ -35,6 +36,7 @@ export function RegisterForm() {
     
     try {
       const res = await axios.post("/api/auth/register", {
+        name: data.name,
         email: data.email,
         password: data.password,
         image: getRandomAvatar().avatarUrl
@@ -56,6 +58,24 @@ export function RegisterForm() {
   return (
     <form className="w-100 " id="form-rhf-demo" onSubmit={form.handleSubmit(onSubmit)}>
         <FieldGroup>
+            <Controller
+                name="name"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                    <Input
+                    {...field}
+                    id="form-rhf-demo-title"
+                    aria-invalid={fieldState.invalid}
+                    placeholder="Raul"
+                    autoComplete="off"
+                    />
+                    {fieldState.invalid && (
+                    <FieldError errors={[fieldState.error]} />
+                    )}
+                </Field>
+                )}
+            />
             <Controller
                 name="email"
                 control={form.control}

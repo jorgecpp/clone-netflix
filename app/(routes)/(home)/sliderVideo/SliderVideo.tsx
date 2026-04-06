@@ -6,7 +6,7 @@ export function SliderVideo(){
             <h2 className='text-white text-3xl font-semibold '>
                 AmidaDev
             </h2>
-            <p className='text-white w-150'>
+            <p className='text-white max-w-150'>
                 Creando un clon de netflix para obtener
                 mas conocimientos sobre el desarrollo de web
                 y asi poner lograr ser contratado en alguna empreza

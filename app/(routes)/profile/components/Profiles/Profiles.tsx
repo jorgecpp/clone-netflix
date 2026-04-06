@@ -11,12 +11,23 @@ import {
   AlertTitle,
 } from "@/components/ui/alert"
 
+import { UserNetflix } from "@/generated/prisma/client"
+import { useCurrentNetflix } from "@/hooks/use-current-user"
+import { useRouter } from "next/navigation"
+
 export function Profiles(){
     
     const [profiles, setProfiles] = useState([]);
+    const router = useRouter();
     const [manageProfile, setManageProfile] = useState(false);
     const [deleteProfile, setDeleteProfile] = useState(false);
     const [selectedUser, setSelectedUser] = useState<string | null>(null);
+    const {changeCurrentUser} = useCurrentNetflix();
+
+    const onClickUser = (user: UserNetflix) => {
+        changeCurrentUser(user)
+        router.push("/")
+    }
 
     useEffect(()=>{
     
@@ -29,7 +40,7 @@ export function Profiles(){
             }
         }
         fetchUsers();
-        
+
 
     },[])
 
@@ -53,9 +64,9 @@ export function Profiles(){
         <>
             <ul className="flex gap-5 items-center justify-center">
                 {
-                    profiles.map(( profile:any )=>(
+                    profiles.map(( profile: UserNetflix )=>(
                         <li className="relative flex flex-col gap-3 items-center justify-center transition duration-300 " key={profile.id}>
-                            <img src={profile.avatarUrl} className={`${manageProfile ? 'blur-md opacity-80': ''} w-20 h-20 rounded-full hover:border-2 hover:border-white transition duration-300`}/>
+                            <img onClick={()=>onClickUser(profile)} src={profile.avatarUrl} className={`${manageProfile ? 'blur-md opacity-80': ''} w-20 h-20 rounded-full hover:border-2 hover:border-white transition duration-300`}/>
                             
                             <p className="text-zinc-400 uppercase">{profile.profileName}</p>
 

@@ -12,6 +12,7 @@ import { Logo } from "../../logo"
 import { BellRing, Menu, Search, User } from "lucide-react"
 import { ItemsNavbar } from "@/data/itemsNavbar"
 import Link from "next/link"
+import { SelectProfile } from "../../selectProfile"
 
 export function NavbarMobile (){
     return(
@@ -28,10 +29,10 @@ export function NavbarMobile (){
                         }
                     </ul>
                     <div className="border-[1px] border-white/70 my-5"/>
-                    <div className="flex justify-between p-2">
+                    <div className="flex items-center justify-between p-2">
                         <Search className="cursor-pointer"/>
                         <BellRing className="cursor-pointer"/>
-                        <User className="cursor-pointer"/>
+                        <SelectProfile/>
                     </div>
                 </SheetContent>
             </Sheet>
