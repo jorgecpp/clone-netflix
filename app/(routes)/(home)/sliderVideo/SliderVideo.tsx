@@ -7,12 +7,9 @@ export function SliderVideo(){
                 AmidaDev
             </h2>
             <p className='text-white max-w-150'>
-                Creando un clon de netflix para obtener
-                mas conocimientos sobre el desarrollo de web
-                y asi poner lograr ser contratado en alguna empreza
-                y lograr ingresos para cumplir mis metas o objetivos
-                para lograr esto tengo que aprender ingles lo mas antes
-                posible, estoy estudiando en el maximo nivel en mi ciudad
+               Disfruta de las mejores películas y series en un solo lugar. 
+                Historias que te atraparán, emociones que no olvidarás.
+                Tu próxima aventura comienza aquí.
             </p>
 
             <div className='flex gap-2'>
