@@ -25,7 +25,7 @@ export function Ranking(){
     return(
         <section>
             <h3 className="text-4xl p-10">Las Mejores Peliculas en Netflix</h3>
-            <ul className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 p-4 ">
+            <ul className="w-auto grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 ">
                 {
                     movies.map(movie=>(
                         <MovieCard key={movie.id} movie={movie}/>

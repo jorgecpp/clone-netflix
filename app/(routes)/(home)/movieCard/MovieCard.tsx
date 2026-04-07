@@ -10,15 +10,16 @@ export function MovieCard({ movie } : PropsPopularMovies){
 
     return(
         <li 
-            className={"relative flex w-70 h-70"}
+            className={"relative flex w-70 h-70 justify-center"}
             onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}  
+            onMouseLeave={() => setIsHovered(false)}
+            key={movie.id}  
         >
             <img src={`/ranking/${movie.ranking}.png`}/>
             <img src={movie.thumbnailUrl}/>
 
             <div className={`absolute flex w-70 h-70  transition-all 
-                duration-300 ease-in-out
+                duration-300 ease-in-out z-40
                 ${isHovered ? "opacity-100 scale-100":"opacity-0 scale-90"}`}>
                 <HoverMovieCard movie={movie}/>
             </div>

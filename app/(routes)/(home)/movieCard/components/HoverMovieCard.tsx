@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 export function HoverMovieCard({movie}: PropsPopularMovies){
     return(
-        <div className=" absolute shadow-2xl  z-40 bg-zinc-900 w-auto h-auto rounded-md  transition-all duration-300">
+        <div className=" absolute shadow-2xl bg-zinc-900 w-auto h-auto rounded-md  transition-all duration-300">
             <iframe src={movie.trailerVideo} className="w-90 h-60"  
                 allow="autoplay; fullscreen; encrypted-media"
                 allowFullScreen
