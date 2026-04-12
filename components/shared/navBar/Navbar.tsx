@@ -8,7 +8,7 @@ export function Navbar (){
                 <NavBarDesktop/>
             </div>
 
-            <div className="md:hidden">
+            <div className="md:hidden mx-auto">
                 <NavbarMobile/>
             </div>
         </nav>
