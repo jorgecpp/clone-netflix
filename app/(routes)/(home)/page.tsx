@@ -1,8 +1,8 @@
-import { Ranking } from "./(routes)/(home)/rankingMovies";
+import { Ranking } from "@/components/home/rankingMovies/RankingMovies";
 import { Navbar } from "@/components/shared/navBar";
-import { SliderVideo } from "./(routes)/(home)/sliderVideo";
-import { VideoBackground } from "@/app/(routes)/(home)/videoBackground";
-import { ListMovies } from "./(routes)/(home)/listMovies";
+import { SliderVideo } from "@/components/home/sliderVideo/SliderVideo";
+import { VideoBackground } from "@/components/home/videoBackground/VideoBackground";
+import { ListMovies } from "@/components/shared/listMovies/ListMovies";
 
 import { Toaster } from "@/components/ui/sonner";
 
@@ -14,7 +14,7 @@ export default function Home() {
         <Navbar></Navbar>
         <SliderVideo/>
         <div className="top-0 left-0 w-full h-full 
-          bg-gradient-to-b
+          bg-linear-to-b
           from-black/0 
           via-black/50 
           to-[#171717]">
@@ -24,8 +24,6 @@ export default function Home() {
       <div>
         <Ranking/>
       </div>
-
-      
 
       <div className="mt-10">
         <ListMovies/>

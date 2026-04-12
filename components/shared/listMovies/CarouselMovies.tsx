@@ -8,9 +8,9 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 
+
 import { MoviesProps } from "./CarouselMovies.type"
 import { CardMovie } from "./CardMovie"
-
 
 export function CarouselMovies({movies, title}:MoviesProps){
 

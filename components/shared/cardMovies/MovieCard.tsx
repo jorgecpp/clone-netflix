@@ -19,7 +19,7 @@ export function MovieCard({ movie } : PropsPopularMovies){
             <img src={movie.thumbnailUrl}/>
 
             <div className={`absolute flex w-70 h-70  transition-all 
-                duration-300 ease-in-out z-40
+                duration-300 ease-in-out z-10
                 ${isHovered ? "opacity-100 scale-100":"opacity-0 scale-90"}`}>
                 <HoverMovieCard movie={movie}/>
             </div>

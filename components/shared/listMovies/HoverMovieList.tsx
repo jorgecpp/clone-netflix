@@ -3,11 +3,11 @@
 import { ChevronDown, Play, ThumbsUp, X } from "lucide-react";
 
 import { InfoMovie } from "./InfoMovie";
+
 import { Movie } from "@/generated/prisma/client";
 import { Button } from "@/components/ui/button";
-import { Genre } from "../../movieCard/components/Genre";
+import { Genre } from "@/components/shared/cardMovies/Genre";
 import { useLovedFilms } from "@/hooks/use-loved-movie";
-import { useCurrentNetflix } from "@/hooks/use-current-user"
 import { useLovedMovies } from "@/hooks/useLovedMovies";
 type HoverMovieProps={
   movie: Movie

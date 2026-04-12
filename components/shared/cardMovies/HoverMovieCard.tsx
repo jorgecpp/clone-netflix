@@ -1,6 +1,6 @@
 import { ChevronDown, DroneIcon, HdIcon, Play } from "lucide-react";
-import { PropsPopularMovies } from "../MovieCard.type";
-import { Genre } from "./Genre";
+import { PropsPopularMovies } from "../../../../../components/shared/cardMovies/MovieCard.type";
+import { Genre } from "../../../../../components/shared/cardMovies/Genre";
 import { Button } from "@/components/ui/button";
 
 export function HoverMovieCard({movie}: PropsPopularMovies){

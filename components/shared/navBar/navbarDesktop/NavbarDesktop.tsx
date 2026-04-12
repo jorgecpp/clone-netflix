@@ -5,15 +5,13 @@ import { Logo } from "../../logo";
 import { ItemsNavbar } from "@/data/itemsNavbar";
 import Link from "next/link";
 import { useScroll } from "@/hooks/useScrollNavbar";
-
 import { SelectProfile } from "../../selectProfile";
-
 
 
 export function NavBarDesktop(){
     const scroll = useScroll()
     return(
-        <div className={`${scroll > 20 ? 'bg-zinc-900 fixed': 'bg-transparent'} z-30  p-4 w-full top-0 right-0 left-0 flex justify-between transition-all duration-300 items-center`}>
+        <div className={`${scroll > 20 ? 'bg-zinc-900 fixed': 'bg-transparent'} z-50  p-4 w-full top-0 right-0 left-0 flex justify-between transition-all duration-300 items-center`}>
             <div className="flex gap-20 items-center">
                 <Logo></Logo>
                 <ul className="gap-4 flex ">
@@ -36,6 +34,5 @@ export function NavBarDesktop(){
             </div>
 
         </div>
-
     )
 }

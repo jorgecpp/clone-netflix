@@ -1,6 +1,6 @@
 "use client"
 
-import { CarouselMovies } from "./components/CarouselMovies"
+import { CarouselMovies } from "./CarouselMovies"
 import { Movie } from "@/generated/prisma/client"
 import { useLovedMovies } from "@/hooks/useLovedMovies"
 
