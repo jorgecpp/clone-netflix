@@ -1,6 +1,6 @@
 "use client"
 
-import { MovieCard } from "@/app/(routes)/(home)/movieCard";
+import { MovieCard } from "@/components/shared/cardMovies/MovieCard";
 import { PopularMovie } from "@/generated/prisma/client";
 import { useEffect, useState } from "react";
 import axios from "axios";

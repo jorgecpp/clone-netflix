@@ -1,6 +1,6 @@
 import { ChevronDown, DroneIcon, HdIcon, Play } from "lucide-react";
-import { PropsPopularMovies } from "../../../../../components/shared/cardMovies/MovieCard.type";
-import { Genre } from "../../../../../components/shared/cardMovies/Genre";
+import { PropsPopularMovies } from "./MovieCard.type";
+import { Genre } from "./Genre";
 import { Button } from "@/components/ui/button";
 
 export function HoverMovieCard({movie}: PropsPopularMovies){
@@ -12,7 +12,7 @@ export function HoverMovieCard({movie}: PropsPopularMovies){
             />
 
             <div className="flex justify-between mt-4 p-5">
-                <Button size="icon" variant={"ghost"} className="bg-slate-50 rounded-full flex items-center justify-center">
+                <Button size="icon" variant={"ghost"} className="bg-slate-50 rounded-full flex items-center justify-center ">
                     <Play className="text-zinc-900 fill-zinc-900 h-3 w-3"/>
                 </Button> 
 

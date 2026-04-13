@@ -47,7 +47,7 @@ export function SelectProfile(){
                             <DropdownMenuLabel>Perfiles</DropdownMenuLabel>
                             {
                                profiles.map((profile: UserNetflix) => (
-                                    <DropdownMenuItem key={profile.id} onClick={()=>changeCurrentUser(profile)} className="w-15 h-15 cursor-pointer flex items-center gap-2 data-[highlighted]:bg-red-500 data-[highlighted]:text-white">
+                                    <DropdownMenuItem key={profile.id} onClick={()=>changeCurrentUser(profile)} className="w-15 h-15 cursor-pointer flex items-center gap-2 data-highlighted:bg-red-500 data-highlighted:text-white">
                                         <img alt="movie image" className="rounded-md"src={profile.avatarUrl}/>
                                         <p>{profile.profileName}</p>
                                     </DropdownMenuItem>
@@ -58,7 +58,7 @@ export function SelectProfile(){
                         <DropdownMenuSeparator/>
 
                         <DropdownMenuGroup>
-                            <DropdownMenuItem className="data-[highlighted]:bg-red-500 data-[highlighted]:text-white" onClick={()=>{
+                            <DropdownMenuItem className="data-highlighted:bg-red-500 data-highlighted:text-white" onClick={()=>{
                                 if(profiles !== null){
                                     router.push("/profile")
                                 }else{
@@ -68,7 +68,7 @@ export function SelectProfile(){
                                 <Pencil color="#ffff" className="w-4 h-4"/>
                                 Administrar perfiles
                             </DropdownMenuItem>
-                            <DropdownMenuItem className="data-[highlighted]:bg-red-500 data-[highlighted]:text-white" onClick={()=>{
+                            <DropdownMenuItem className="data-highlighted:bg-red-500 data-highlighted:text-white" onClick={()=>{
                                 changeCurrentUser(null)
                             }}>
                                 <LogOut color="#ffff" className="w-4 h-4"/>

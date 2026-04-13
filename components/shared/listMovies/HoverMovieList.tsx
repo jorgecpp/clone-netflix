@@ -9,12 +9,14 @@ import { Button } from "@/components/ui/button";
 import { Genre } from "@/components/shared/cardMovies/Genre";
 import { useLovedFilms } from "@/hooks/use-loved-movie";
 import { useLovedMovies } from "@/hooks/useLovedMovies";
+import { useRouter } from "next/navigation";
 type HoverMovieProps={
   movie: Movie
 }
 
 export function HoverMovieList({ movie }: HoverMovieProps) {
-      
+  const router = useRouter()
+
   const lovedMoviesFromStore = useLovedMovies()
   const isMyList = lovedMoviesFromStore.some(item => item.id === movie.id)
 
@@ -27,8 +29,13 @@ export function HoverMovieList({ movie }: HoverMovieProps) {
       
       <div className="flex p-5 justify-between gap-4">
         <div className="flex gap-4">
-          <Button size="icon" variant={"ghost"} className="bg-slate-50 rounded-full flex items-center justify-center">
-          <Play className="text-zinc-900 fill-zinc-900 h-3 w-3"/>
+          <Button 
+          size="icon" 
+          variant={"ghost"} 
+          className="bg-slate-50 rounded-full flex items-center justify-center"
+          onClick={()=>router.push(`/movies/${movie.id}`)}
+          >
+            <Play className="text-zinc-900 fill-zinc-900 h-3 w-3"/>
           </Button>                      
           <Button 
           size="icon" 

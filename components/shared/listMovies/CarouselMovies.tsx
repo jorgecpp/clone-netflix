@@ -1,5 +1,4 @@
 "use client"
-import { useState } from "react"
 import {
   Carousel,
   CarouselContent,
@@ -13,7 +12,6 @@ import { MoviesProps } from "./CarouselMovies.type"
 import { CardMovie } from "./CardMovie"
 
 export function CarouselMovies({movies, title}:MoviesProps){
-
 
     return(
         <div>

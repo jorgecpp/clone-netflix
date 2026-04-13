@@ -1,9 +1,8 @@
 "use client"
 
-import { HoverMovieCard } from "./components/HoverMovieCard"
+import { HoverMovieCard } from "./HoverMovieCard"
 import { useState } from "react"
 import { PropsPopularMovies } from "./MovieCard.type"
-
 
 export function MovieCard({ movie } : PropsPopularMovies){
     const [isHovered, setIsHovered] = useState(false)
