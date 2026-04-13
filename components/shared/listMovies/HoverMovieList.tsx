@@ -33,7 +33,7 @@ export function HoverMovieList({ movie }: HoverMovieProps) {
           size="icon" 
           variant={"ghost"} 
           className="bg-slate-50 rounded-full flex items-center justify-center"
-          onClick={()=>router.push(`/movies/${movie.id}`)}
+          onClick={()=>router.push(`/watch/${movie.id}`)}
           >
             <Play className="text-zinc-900 fill-zinc-900 h-3 w-3"/>
           </Button>                      
