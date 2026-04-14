@@ -4,8 +4,10 @@ import { Genre } from "./Genre";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
+
 export function HoverMovieCard({movie}: PropsPopularMovies){
     const router = useRouter()
+
     return(
         <div className=" absolute shadow-2xl bg-zinc-900 w-auto h-auto rounded-md  transition-all duration-300">
             <iframe src={movie.trailerVideo} className="w-90 h-60"  

@@ -23,8 +23,9 @@ export function HoverMovieList({ movie }: HoverMovieProps) {
   const {addLovedFile, removeLovedItem} = useLovedFilms()
   return (
     <div>
-    <img src={movie.thumbnailUrl} alt="image movie" width={200} height={200}
+      <img src={movie.thumbnailUrl} alt="image movie" width={200} height={200}
       className="cursor-pointer object-cover transition-all duration-300 shadow-xl w-full rounded-t-lg"
+      onClick={()=>router.push(`/movies/${movie.id}`)}
       />  
       
       <div className="flex p-5 justify-between gap-4">

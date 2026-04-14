@@ -5,8 +5,10 @@ import { PopularMovie } from "@/generated/prisma/client";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+
 export function Ranking(){
     const [movies, setMovies] = useState<PopularMovie[]>([])
+
 
     useEffect(()=>{
         const fetchMovies = async () => {
