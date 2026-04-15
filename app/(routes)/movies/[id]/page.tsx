@@ -1,3 +1,4 @@
+import { ListMovies } from "@/components/shared/listMovies/ListMovies";
 import { Navbar } from "@/components/shared/navBar";
 import { SliderVideos } from "@/components/shared/sliderVideos/SliderVideos";
 
@@ -42,6 +43,8 @@ export default async function MoviePage({params}: { params: Promise<{id: string}
                 />
                 
             </div>
+
+            <ListMovies/>
         </div>
     )
 }
