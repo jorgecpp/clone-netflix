@@ -35,7 +35,7 @@ model UserNetflix{
 
 model Movie{
   id String @id @default(cuid())
-  title String
+  title String @unique
   thumbnailUrl String
   genre String[]
   duration String

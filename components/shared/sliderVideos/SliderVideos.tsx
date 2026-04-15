@@ -1,6 +1,15 @@
+"use client"
+import { useRouter } from "next/navigation";
 import {Info, Play} from 'lucide-react'
 
-export function SliderVideo(){
+type sliderVideos = {
+    id: string
+}
+
+export function SliderVideos({id}: sliderVideos){
+    const router = useRouter()
+
+
     return(
         <div className='flex flex-col p-4 gap-4 absolute bottom-20'>
             <h2 className='text-white text-3xl font-semibold '>
@@ -14,7 +23,7 @@ export function SliderVideo(){
 
             <div className='flex gap-2'>
                 <button className='bg-white flex items-center p-3 gap-2 rounded-sm'>
-                    <Play className='fill-black'/>
+                    <Play className='fill-black' onClick={()=>router.push(`/watch/${id}`)}/>
                     <span className='text-black'>Reproducir</span>
                 </button>
 

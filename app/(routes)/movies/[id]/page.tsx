@@ -1,5 +1,9 @@
 import { Navbar } from "@/components/shared/navBar";
+import { SliderVideos } from "@/components/shared/sliderVideos/SliderVideos";
+
 import { prisma } from "@/lib/prisma";
+
+
 
 export default async function MoviePage({params}: { params: Promise<{id: string}>}){
     const {id} = await params
@@ -10,25 +14,33 @@ export default async function MoviePage({params}: { params: Promise<{id: string}
     ])
 
     const movie = popular || normal
-    
+
+    if (!movie) {
+        return <div className="text-white">Película no encontrada</div>
+    }
+
     return(
         <div>
-            <Navbar/>
-            <div className="relative w-full h-70vh">
-    
+            
+            <div className="relative w-full h-200 overflow-hidden" >
                 <iframe
                     src={movie?.trailerVideo}
-                    className="absolute top-0 left-0 w-full h-full"
-                    allow="autoplay; fullscreen"
-                    style={{ border: "none", height: "70vh" }}
+                    className="absolute top-0 left-0 w-full h-full -z-10"
+                    title="Tráiler de la película"
+                    allow="autoplay"
+                    style={{ border: "none"}}
                 />
+                <Navbar/>
 
-                <div className="absolute bg-linear-to-t from-black via-black/50 to-transparent"/>
+                <SliderVideos id={movie.id}/>
 
-                <p className="absolute bottom-10 left-10 text-white">
-                    Las mejores peliculas
-                </p>
-
+                <div className="top-0 left-0 w-full h-full 
+                    bg-linear-to-b
+                    from-black/0 
+                    via-black/50 
+                    to-[#171717]"
+                />
+                
             </div>
         </div>
     )
