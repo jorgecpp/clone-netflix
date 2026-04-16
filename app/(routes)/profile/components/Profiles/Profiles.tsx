@@ -1,7 +1,7 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
 import axios from "axios"
+import { Button } from "@/components/ui/button"
 import { AddProfile } from "../AddProfile"
 import { useEffect, useState } from "react"
 import { Trash2 } from "lucide-react"
@@ -15,34 +15,42 @@ import { UserNetflix } from "@/generated/prisma/client"
 import { useCurrentNetflix } from "@/hooks/use-current-user"
 import { useRouter } from "next/navigation"
 
+
 export function Profiles(){
-    
-    const [profiles, setProfiles] = useState([]);
+    const [profiles, setProfiles] = useState<UserNetflix[]>([]);
     const router = useRouter();
     const [manageProfile, setManageProfile] = useState(false);
     const [deleteProfile, setDeleteProfile] = useState(false);
     const [selectedUser, setSelectedUser] = useState<string | null>(null);
-    const {changeCurrentUser} = useCurrentNetflix();
+
+    const {userId, changeCurrentUser, isHydrated} = useCurrentNetflix();
+
 
     const onClickUser = (user: UserNetflix) => {
         changeCurrentUser(user)
         router.push("/")
     }
-
-    useEffect(()=>{
     
+    useEffect(()=>{
+
+        if(!isHydrated) return
+        if(!userId) return
+
+        
         const fetchUsers = async () => {
             try{
-                const res = await axios.get('/api/users');
-                setProfiles(res.data)
+                const res = await axios.get(`/api/users/${userId}`);
+                
+                setProfiles(res.data ?? [])
             }catch(error){
                 console.error("error fetching users", error)
+                
             }
         }
+
         fetchUsers();
 
-
-    },[])
+    },[userId, isHydrated])
 
     const handleDelete = async ()=>{
         if(!selectedUser) return;
@@ -60,11 +68,15 @@ export function Profiles(){
         }
     }
 
+    if(!isHydrated){
+        return <p className="text-white text-center mt-10">Cargando perfiles...</p>
+    }
+
     return(
         <>
             <ul className="flex gap-5 items-center justify-center">
                 {
-                    profiles.map(( profile: UserNetflix )=>(
+                    profiles?.map(( profile )=>(
                         <li className="relative flex flex-col gap-3 items-center justify-center transition duration-300 " key={profile.id}>
                             <img onClick={()=>onClickUser(profile)} src={profile.avatarUrl} className={`${manageProfile ? 'blur-md opacity-80': ''} w-20 h-20 rounded-full hover:border-2 hover:border-white transition duration-300`}/>
                             
@@ -84,7 +96,9 @@ export function Profiles(){
                 }
 
                 <li>
-                    <AddProfile/>
+                    <AddProfile onProfileCreated={(newProfile)=>{
+                        setProfiles(prev => [...prev, newProfile])
+                    }}/>
                 </li>
             </ul>
             

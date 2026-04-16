@@ -1,20 +1,35 @@
-import { prisma } from "@/lib/prisma";
-import { NextResponse } from "next/server";
+import { getRandomAvatar } from "@/data/avatarsProfile"
+import { prisma } from "@/lib/prisma"
+import { NextResponse } from "next/server"
 
-export async function GET() {
+export async function POST(req: Request) {
     try{
-        const profile = await prisma.userNetflix.findMany();
+        const body = await req.json()
 
-        return NextResponse.json(profile);
+        console.log("BODY: ", body)
 
-    }catch(error){
-        console.error(error);
+        if(!body.userId || !body.profileName) {
+            return NextResponse.json(
+                {message: "faltan datos"},
+                {status: 400}
+            )
+        }
 
+        const profile = await prisma.userNetflix.create({
+            data:{
+                profileName: body.profileName,
+                userId: body.userId,
+                avatarUrl: getRandomAvatar().avatarUrl
+            }
+        })
+
+        return NextResponse.json(profile)
+
+    }catch(e){
+        console.error(e)
         return NextResponse.json(
-            {message: "error al obtener usuarios"},
-            {status: 500}
-        );
+            {message: "Error al crear perfil"},
+            {status: 500 }
+        )
     }
 }
-
-

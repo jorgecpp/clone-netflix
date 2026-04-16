@@ -15,5 +15,6 @@ const AvatarsProfiel = [
 
 export const getRandomAvatar = () => {
     const randomIndex = Math.floor(Math.random()*AvatarsProfiel.length);
+
     return AvatarsProfiel[randomIndex]
 }

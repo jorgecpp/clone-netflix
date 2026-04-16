@@ -8,7 +8,7 @@ export default function Profile(){
 
     return(
         <div className="relative min-h-screen flex flex-col justify-center items-center bg-zinc-900">
-            <h1 className="text-5xl mb-8 text-white">
+            <h1 className="text-5xl mb-8 text-white text-center">
                 ¿Quién eres? Elige tu perfil
             </h1>
             

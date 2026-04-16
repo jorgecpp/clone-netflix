@@ -7,6 +7,7 @@ export async function POST(req: Request) {
     const body = await req.json();
     const hashedPassword = await bcrypt.hash(body.password, 10);
 
+
     const existingUser = await prisma.user.findUnique({
       where: {
         email: body.email,
@@ -26,15 +27,7 @@ export async function POST(req: Request) {
       },
     });
 
-    await prisma.userNetflix.create({
-      data: {
-        profileName: newUser?.name,
-        avatarUrl: getRandomAvatar().avatarUrl, // opcional
-        userId: newUser.id,
 
-      },
-    });
-    
     return Response.json(newUser);
 
   } catch (error) {

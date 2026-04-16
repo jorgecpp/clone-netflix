@@ -1,4 +1,5 @@
 "use client"
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { UserNetflix } from "@/generated/prisma/client";
@@ -13,17 +14,18 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import axios from "axios";
+
 
 export function SelectProfile(){
-    const [profiles, setProfiles] = useState([]);
+    const [profiles, setProfiles] = useState<UserNetflix[]>([]);
     const router = useRouter(); 
-    const {currentUser, changeCurrentUser} = useCurrentNetflix();
+    const {userId, currentUser, changeCurrentUser} = useCurrentNetflix();
 
     useEffect(()=>{
+        if(!userId) return
         const fetchprofiles = async () => {
             try{
-                const res = await axios("/api/users");
+                const res = await axios.get(`/api/users/${userId}`);
                 setProfiles(res.data)
             }catch(error){
                 console.error(error)
@@ -31,7 +33,7 @@ export function SelectProfile(){
         }
 
         fetchprofiles();
-    },[])
+    },[userId])
 
     return(
         <DropdownMenu>
@@ -39,14 +41,13 @@ export function SelectProfile(){
                         {
                             currentUser ? <img alt="user profile" className="cursor-pointer w-10 h-10 rounded-md" src={currentUser.avatarUrl}/> : <User className="cursor-pointer hover:text-gray-300 transition-all duration-300"/>
                         }
-                        
                     </DropdownMenuTrigger>
 
                     <DropdownMenuContent className="bg-black text-white border border-zinc-800 shadow-xl" align="start">
                         <DropdownMenuGroup>
                             <DropdownMenuLabel>Perfiles</DropdownMenuLabel>
                             {
-                               profiles.map((profile: UserNetflix) => (
+                               profiles.map((profile) => (
                                     <DropdownMenuItem key={profile.id} onClick={()=>changeCurrentUser(profile)} className="w-15 h-15 cursor-pointer flex items-center gap-2 data-highlighted:bg-red-500 data-highlighted:text-white">
                                         <img alt="movie image" className="rounded-md"src={profile.avatarUrl}/>
                                         <p>{profile.profileName}</p>

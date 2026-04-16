@@ -17,11 +17,13 @@ import { formSchema } from "./registerForm.form"
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { getRandomAvatar } from "@/data/avatarsProfile";
-
+import { useCurrentNetflix } from "@/hooks/use-current-user";
 
 export function RegisterForm() {
 
   const router = useRouter()
+  const {setUser} = useCurrentNetflix()
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -40,20 +42,25 @@ export function RegisterForm() {
         email: data.email,
         password: data.password,
         image: getRandomAvatar().avatarUrl
-      }); 
+      });
+
 
       if(res.status === 200 || res.status === 201){
+
+        setUser(null, res.data.id)
+
         toast.success("Usuario registrado correctamente")
+        
         router.push("/profile")
       }
-
-      
 
     } catch (error) {
       console.error(error)
       toast.success("Algo salio mal")
     }
   }
+
+  
 
   return (
     <form className="w-100 " id="form-rhf-demo" onSubmit={form.handleSubmit(onSubmit)}>

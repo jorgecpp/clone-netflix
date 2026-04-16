@@ -28,6 +28,7 @@ export async function POST(req:Request){
       message: "Login exitoso",
       user,
     })
+    
   }catch(error){
     console.error(error);
     return new Response("Error", {status: 500});

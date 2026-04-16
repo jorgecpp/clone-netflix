@@ -6,9 +6,16 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { FormAddProfile } from "../FormAddProfile";
+import { useCurrentNetflix } from "@/hooks/use-current-user";
+import { UserNetflix } from "@/generated/prisma/client";
 
-export function AddProfile(){
+interface AddProfileProps {
+    onProfileCreated: (newProfile: UserNetflix) => void
+}
 
+export function AddProfile({onProfileCreated}: AddProfileProps){
+    
+    
     return(
         <div className="flex flex-col gap-4 items-center justify-center">
             <Dialog>
@@ -16,7 +23,7 @@ export function AddProfile(){
                     <PlusCircle color="#A1A1AA" className="w-20 h-20 cursor-pointer"/>
                 </DialogTrigger>
                 <DialogContent className="bg-black ">
-                    <FormAddProfile/>                     
+                    <FormAddProfile onProfileCreated={onProfileCreated}/>                     
                 </DialogContent>
             </Dialog>
             <p className="uppercase text-zinc-400 ">añadir perfil</p>

@@ -16,28 +16,35 @@ import { Button } from "@/components/ui/button"
 import axios from "axios"
 import { toast } from "sonner"
 
-export function FormAddProfile () {
+import { useCurrentNetflix } from "@/hooks/use-current-user"
+
+
+export function FormAddProfile ({onProfileCreated}: any) {
+    const { userId } = useCurrentNetflix()
+
     const form = useForm<z.infer<typeof addProfileSchema>>({
         resolver: zodResolver(addProfileSchema),
         defaultValues: {
-            email: "",
-            password: "",
+            profileName: ""
         }
     })
 
     const onSubmit = async (data: z.infer<typeof addProfileSchema>) => {
         try{
-            const res = await axios.post("/api/auth/login",{
-                email: data.email,
-                password: data.password
+            if(!userId) return
+
+            const res = await axios.post(`/api/users`,{
+                profileName: data.profileName,
+                userId
             });
 
             if(res.status == 200 || res.status == 201){
-                toast.success("Login Exitoso")
+                onProfileCreated(res.data)
+                toast.success("Perfil creado con exito")
             }
 
         }catch(error: any){
-            toast.error(error.response?.data || "Error al iniciar sesión")
+            toast.error(error.response?.data || "Error al crear perfil")
         }
     }
 
@@ -52,15 +59,15 @@ export function FormAddProfile () {
 
             <FieldGroup>
                 <Controller
-                    name="email"
+                    name="profileName"
                     control={form.control}
                     render={({ field, fieldState})=>(
                         <Field data-invalid = {fieldState.invalid}>
-                            <Label htmlFor="name-1">Usuario</Label>
+                            <Label htmlFor="name-1">Nombre de Usuario</Label>
                             <Input 
                                 {...field}
                                 id="name-1"
-                                placeholder="Usuario@gamil.com"
+                                placeholder="Jorge"
                             />
 
                             {fieldState.error && (
@@ -72,32 +79,11 @@ export function FormAddProfile () {
                     )}
                 />
 
-                <Controller
-                    name="password"
-                    control={form.control}
-                    render={({field, fieldState})=>(
-                        <Field data-invalid={fieldState.invalid}>
-                            <Label htmlFor="username-1">Password</Label>
-                            <Input
-                                {...field}
-                                id="username-1"
-                                type="password"
-                                placeholder="****************"
-                            />
-
-                            {fieldState.error && (
-                                <p className="text-red-500 text-sm">
-                                    {fieldState.error.message}
-                                </p>
-                            )}
-                        </Field>
-                    )}
-                />
                 <DialogFooter>
-                            <DialogClose asChild>
-                                <Button className="hover:bg-zinc-500 transition duration-300">Cancel</Button>
-                            </DialogClose>
-                            <Button type="submit" className="hover:bg-zinc-500 transition duration-300">Save changes</Button>
+                    <DialogClose asChild>
+                        <Button className="hover:bg-zinc-500 transition duration-300">Cancel</Button>
+                    </DialogClose>
+                    <Button type="submit" className="hover:bg-zinc-500 transition duration-300">Añadir Perfil</Button>
                 </DialogFooter>
             </FieldGroup>
         </form>

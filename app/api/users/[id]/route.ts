@@ -1,6 +1,41 @@
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
+
+export async function GET(
+  req: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+
+  try {
+    const {id: userId} = await params
+
+    if(!userId){
+      return NextResponse.json(
+        {message: "userId requeried"},
+        {status: 400}
+      )
+    }
+
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      include: {
+        userNetflix: true   
+      }
+    })
+
+    return NextResponse.json(user?.userNetflix)
+
+  } catch (error) {
+    console.error(error)
+
+    return NextResponse.json(
+      { message: "error al obtener perfiles" },
+      { status: 500 }
+    )
+  }
+}
+
 export async function DELETE(
   req: Request,
   context: { params: Promise<{ id: string }> }
