@@ -27,11 +27,12 @@ A modern Netflix clone built with **React, Next.js, and Tailwind CSS**, featurin
 
 ## 📸 Screenshots
 
-*Add your project screenshots here 👇*
 
 ![Home Page](./public/screenshots/home.png)
 ![Profiles](./public/screenshots/profiles.png)
 ![Movies](./public/screenshots/movies.png)
+![Register](./public/screenshots/register.png)
+![login](./public/screenshots/login.png)
 
 ---
 
@@ -104,4 +105,4 @@ This project is for educational purposes.
 
 ## ✨ Author
 
-Developed by Jorge Quispe
+Developed by Jorge Teves
