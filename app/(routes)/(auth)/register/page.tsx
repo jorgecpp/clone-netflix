@@ -1,4 +1,4 @@
-import { Terms } from "../components/terms"
+import { Terms } from "@/components/auth/Terms"
 import { Checkbox } from "@/components/ui/checkbox"
 import { RegisterForm } from "./registerForm"
 import Link from "next/link"

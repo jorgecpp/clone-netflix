@@ -1,5 +1,5 @@
 import { Checkbox } from "@/components/ui/checkbox"
-import { Terms } from "../components/terms"
+import { Terms } from "@/components/auth/Terms"
 import { LoginForm } from "./loginForm"
 import Link from "next/link"
 

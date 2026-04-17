@@ -20,6 +20,7 @@ export function SelectProfile(){
     const [profiles, setProfiles] = useState<UserNetflix[]>([]);
     const router = useRouter(); 
     const {userId, currentUser, changeCurrentUser} = useCurrentNetflix();
+    const numberProfiles = profiles.length
 
     useEffect(()=>{
         if(!userId) return
@@ -60,7 +61,7 @@ export function SelectProfile(){
 
                         <DropdownMenuGroup>
                             <DropdownMenuItem className="data-highlighted:bg-red-500 data-highlighted:text-white" onClick={()=>{
-                                if(profiles !== null){
+                                if(numberProfiles){
                                     router.push("/profile")
                                 }else{
                                     router.push("/register")
@@ -69,12 +70,20 @@ export function SelectProfile(){
                                 <Pencil color="#ffff" className="w-4 h-4"/>
                                 Administrar perfiles
                             </DropdownMenuItem>
-                            <DropdownMenuItem className="data-highlighted:bg-red-500 data-highlighted:text-white" onClick={()=>{
-                                changeCurrentUser(null)
-                            }}>
-                                <LogOut color="#ffff" className="w-4 h-4"/>
-                                Cerrar Sesion
-                            </DropdownMenuItem>
+                            
+                            
+                            {
+                                numberProfiles > 0 && (
+                                    <DropdownMenuItem className="data-highlighted:bg-red-500 data-highlighted:text-white" onClick={()=>{
+                                        changeCurrentUser(null)
+                                    }}>
+                                        
+                                        <LogOut color="#ffff" className="w-4 h-4"/>
+                                        Cerrar Sesion
+                                    </DropdownMenuItem>
+                                )
+                            }
+                            
                         </DropdownMenuGroup>
                     </DropdownMenuContent>
                 </DropdownMenu>
