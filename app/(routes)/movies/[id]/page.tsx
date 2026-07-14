@@ -4,8 +4,6 @@ import { SliderVideos } from "@/components/shared/sliderVideos/SliderVideos";
 
 import { prisma } from "@/lib/prisma";
 
-
-
 export default async function MoviePage({params}: { params: Promise<{id: string}>}){
     const {id} = await params
 
