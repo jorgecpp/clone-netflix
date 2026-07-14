@@ -29,8 +29,8 @@ A modern Netflix clone built with **React, Next.js, and Tailwind CSS**, featurin
 
 
 ![Home Page](./public/screenshots/home.png)
-![Profiles](./public/screenshots/profiles.png)
-![Movies](./public/screenshots/movies.png)
+![Profiles](./public/screenshots/profile.png)
+![Movies](./public/screenshots/movie.png)
 ![Register](./public/screenshots/register.png)
 ![login](./public/screenshots/login.png)
 
