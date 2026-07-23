@@ -1,4 +1,4 @@
-import { Movie } from "@/generated/prisma/client"
+import { Movie } from "@/types/movie.type"
 
 export type MoviesProps={
     movies: Movie[]

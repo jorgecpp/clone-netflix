@@ -16,8 +16,7 @@ import { Button } from "@/components/ui/button"
 import axios from "axios"
 import { toast } from "sonner"
 
-import { useCurrentNetflix } from "@/hooks/use-current-user"
-
+import { useCurrentNetflix } from "@/stores/userNetflix.store"
 
 export function FormAddProfile ({onProfileCreated}: any) {
     const { userId } = useCurrentNetflix()

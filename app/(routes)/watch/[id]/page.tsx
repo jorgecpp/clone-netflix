@@ -1,24 +1,13 @@
 import { Navbar } from "@/components/shared/navBar";
-import { prisma } from "@/lib/prisma";
+import { WatchClient } from "@/components/watchMovie/WatchClient";
 
-export default async function WatchPage({params}: { params: Promise<{id: string}>}){
+export default async function WatchPage({params}: { params: Promise<{id: number}>}){
     const {id} = await params
-
-    const [popular, normal] = await Promise.all([
-        prisma.popularMovie.findUnique({where: {id}}),
-        prisma.movie.findUnique({where: {id}})
-    ])
-
-    const movie = popular || normal
 
     return(
         <div className="h-screen flex flex-col">
             <Navbar/>
-            <iframe src={movie?.movieVideo} 
-            allow="autoplay; fullscreen; encrypted-media" 
-            allowFullScreen
-            className="flex-1 w-full"
-            />
+            <WatchClient id={id}/>
         </div>
     )
 }

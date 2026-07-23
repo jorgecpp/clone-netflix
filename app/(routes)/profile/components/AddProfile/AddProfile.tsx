@@ -6,7 +6,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { FormAddProfile } from "../FormAddProfile";
-import { useCurrentNetflix } from "@/hooks/use-current-user";
 import { UserNetflix } from "@/generated/prisma/client";
 
 interface AddProfileProps {

@@ -1,14 +1,14 @@
 import { UserNetflix } from "@/generated/prisma/client";
-import { create } from "zustand"
-import { createJSONStorage, persist } from "zustand/middleware"
+import { create } from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
 
 interface UseCurrentUser {
-    userId: string | null
-    currentUser: UserNetflix | null
+    userId: string | null,
+    currentUser: UserNetflix | null,
     isHydrated: boolean,
 
-    setHydrated: () => void
-    changeCurrentUser: (data: UserNetflix | null ) => void
+    setHydrated: () => void,
+    changeCurrentUser: (data: UserNetflix | null) => void
     setUser: (profile: UserNetflix | null, userId: string) => void
 }
 
@@ -19,12 +19,12 @@ export const useCurrentNetflix = create(
             currentUser: null,
             isHydrated: false,
 
-            setHydrated: () => set({isHydrated: true}),
+            setHydrated: () => set({ isHydrated: true }),
 
             changeCurrentUser: (data: UserNetflix | null) => {
                 set({currentUser: data})
             },
-                
+
             setUser: (profile, userId) => {
                 set({
                     currentUser: profile,
@@ -33,7 +33,7 @@ export const useCurrentNetflix = create(
             }
         }),
         {
-            name:"current-netflix-user",
+            name: "current-netflix-user",
             storage: createJSONStorage(()=>sessionStorage),
             onRehydrateStorage: () => (state) => {
                 if(state){

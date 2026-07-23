@@ -1,9 +1,10 @@
-import { getPopularMovies, searchMovies } from "@/services/tmdb.service";
+import { getPopularMovies, getRankedDayMovies, searchMovies } from "@/services/tmdb.service";
 import { Movie } from "@/types/movie.type";
 import { useState, useEffect } from "react";
 
 export function useTmdbMovies(){
     const [movies, setMovies] = useState<Movie[]>([])
+    const [rankedMovies, setRankedMovies] = useState<Movie[]>([])
     const [search, setSearch] = useState("")
     const [loading, setLoading] = useState(false)
 
@@ -19,12 +20,26 @@ export function useTmdbMovies(){
         }
     }
 
+    async function loadRankedDayMovies() {
+        try{
+            setLoading(true)
+
+            const data = await getRankedDayMovies()
+
+            setRankedMovies( data )
+        }finally{
+            setLoading(false)
+        }
+    }
+
+    useEffect(()=>{
+        loadRankedDayMovies()
+        loadPopularMovies()
+    },[])
+
     useEffect(()=>{
         const timer = setTimeout(async()=>{
-            if(search.trim()===""){
-                loadPopularMovies()
-                return
-            }
+            if(search.trim() === "") return
 
             try{
                 setLoading(true)
@@ -41,6 +56,7 @@ export function useTmdbMovies(){
         movies,
         search,
         setSearch,
-        loading
+        loading,
+        rankedMovies
     }
 }

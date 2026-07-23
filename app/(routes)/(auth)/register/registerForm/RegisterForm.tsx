@@ -17,7 +17,7 @@ import { formSchema } from "./registerForm.form"
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { getRandomAvatar } from "@/data/avatarsProfile";
-import { useCurrentNetflix } from "@/hooks/use-current-user";
+import { useCurrentNetflix } from "@/stores/userNetflix.store";
 
 export function RegisterForm() {
 

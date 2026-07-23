@@ -16,13 +16,16 @@ export function CarouselMovies({movies, title}:MoviesProps){
     return(
         <div>
             <h3 className="text-white text-4xl p-10 max-w-150">{title}</h3>
-            <Carousel className="w-full">
+            <Carousel className="w-full h-auto">
                 
-                <CarouselContent className="pointer-events-none h-85 -ml-1 gap-1">
+                <CarouselContent className="pointer-events-none gap-5 h-100">
                     {movies.map(movie =>(
                         <CarouselItem 
                             key={movie.id}
-                            className="pl-1 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5 group relative pointer-events-auto "
+                            className="
+                            pl-1 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5 group relative pointer-events-auto 
+                            h-full
+                            "
                         > 
                             <CardMovie movie={movie}/>
                         </CarouselItem>

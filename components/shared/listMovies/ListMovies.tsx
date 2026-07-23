@@ -1,18 +1,18 @@
 "use client"
 
 import { CarouselMovies } from "./CarouselMovies"
-import { useLovedMovies } from "@/hooks/useLovedMovies"
-import { useMovies } from "@/hooks/useMovies"
+import { useTmdbMovies } from "@/hooks/useTmdbMovies"
+import { useFavoriteMoviesStore } from "@/stores/favoriteMovies.store"
 
 export function ListMovies(){
-    const {movies} = useMovies("/api/movies/normalMovies")
-    const lovedMoviesFromStore = useLovedMovies()
+    const { movies } = useTmdbMovies()
+    const { moviesLoved } = useFavoriteMoviesStore()
 
     return(
         <section>
             <CarouselMovies movies={movies} title={"Lista de Peliculas"}/>
             
-            <CarouselMovies movies={lovedMoviesFromStore} title={"Peliculas Favoritas"} />
+            <CarouselMovies movies={moviesLoved} title={"Peliculas Favoritas"} />
         </section>
     )
 }

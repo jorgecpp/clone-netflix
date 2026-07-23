@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/alert"
 
 import { UserNetflix } from "@/generated/prisma/client"
-import { useCurrentNetflix } from "@/hooks/use-current-user"
+import { useCurrentNetflix } from "@/stores/userNetflix.store"
 import { useRouter } from "next/navigation"
 
 

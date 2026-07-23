@@ -1,5 +1,6 @@
-import { PopularMovie } from "@/generated/prisma/client"
+import { Movie } from "@/types/movie.type"
 
 export type PropsPopularMovies = {
-    movie: PopularMovie 
+    movie: Movie,
+    index: number
 }

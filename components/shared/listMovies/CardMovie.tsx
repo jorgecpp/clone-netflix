@@ -2,7 +2,7 @@
 import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { HoverMovieList } from "./HoverMovieList"
-import { Movie } from "@/generated/prisma/client"
+import { Movie } from "@/types/movie.type"
 
 type HoverMovieProps={
     movie: Movie
@@ -14,31 +14,23 @@ export function CardMovie({movie}:HoverMovieProps){
     return(
         <Card 
             className="
-            cursor-pointer group relative border-none
-            bg-transparent  hover:border-primary transition-colors
+            relative
+            overflow-visible
+            border-none
+            bg-transparent
             " 
             onMouseEnter={()=> setIsHovered(true)} 
             onMouseLeave={()=>setIsHovered(false)}>
                                 
-            <CardContent 
-                className="
-                rounded-md w-full 
-                "
-            >
-
+            <CardContent className="p-0 rounded-lg overflow-hidden aspect-video">
                 <img
-                    src={movie.thumbnailUrl}
-                    alt="movie image"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="rounded-md"
+                src={`https://image.tmdb.org/t/p/w780${movie.backdrop_path}`}
+                alt={movie.title}
+                className="w-full h-full object-cover"
                 />
-
-                
-                
             </CardContent>
             <div className="
-                absolute top-0 left-0 
-                w-90
+                absolute top-0 left-0 w-full
                 bg-zinc-900 rounded-lg z-50
 
                 scale-95 translate-y-4

@@ -1,4 +1,4 @@
-import { MoviesResponse } from "@/types/movie.type";
+import { GenreResponse, MoviesResponse, MovieVideoResponse } from "@/types/movie.type";
 
 const options = {
     method: 'GET',
@@ -30,5 +30,40 @@ export async function searchMovies( query: string ) {
     return data.results
 }
 
+export async function getRankedDayMovies(limit = 5){
+    const response = await fetch(
+        'https://api.themoviedb.org/3/trending/movie/day?language=en-US',
+        options
+    )
 
+    const data: MoviesResponse = await response.json()
+    
+    return data.results.slice(0, limit)
+}
 
+export async function getMovieTrailer( movieId: number ) {
+    const response = await fetch(
+        `https://api.themoviedb.org/3/movie/${movieId}/videos`,
+        options
+    )
+
+    const data: MovieVideoResponse = await response.json()
+    return (data.results.find(
+        video => 
+            video.site === "YouTube" &&
+            video.type === "Trailer"
+
+        ) ?? null 
+    );
+}
+
+export async function getMovieGenres() {
+    const response = await fetch(
+        `https://api.themoviedb.org/3/genre/movie/list`,
+        options
+    )
+
+    const data: GenreResponse = await response.json()
+
+    return data.genres
+}

@@ -4,8 +4,10 @@ import { MovieSearch } from "./MovieSearch"
 import { MovieGrid } from "./MovieGrid"
 import { MovieGridSkeleton } from "./MovieGridSkeleton"
 
+
 export function MoviesClient(){
     const { movies, search, setSearch, loading } = useTmdbMovies()
+
     return(
         <main className="flex flex-col mx-auto max-w-7xl px-4 py-10">
             {/* Encabezado */}
