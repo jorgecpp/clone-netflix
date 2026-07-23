@@ -12,10 +12,6 @@ export const ItemsNavbar = [
         link: "/series"
     },
     {
-        name: "Top",
-        link: "/top"
-    },
-    {
         name: "My List",
         link: "/my-list"
     }
