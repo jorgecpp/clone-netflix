@@ -36,3 +36,19 @@ export interface Genre {
 export interface GenreResponse {
     genres: Genre[]
 }
+
+export interface Serie {
+    id: number,
+    backdrop_path: string,
+    popularity: number,
+    genre_ids: [],
+    poster_path: string,
+    first_air_date: string,
+    original_name: string,
+    vote_average: number
+}
+
+export interface SeriesResponse {
+    id: number,
+    results: Serie[]
+}

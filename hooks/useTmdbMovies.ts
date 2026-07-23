@@ -1,3 +1,4 @@
+import LoadingMovies from "@/app/(routes)/loadingMovies/page";
 import { getPopularMovies, getRankedDayMovies, searchMovies } from "@/services/tmdb.service";
 import { Movie } from "@/types/movie.type";
 import { useState, useEffect } from "react";
@@ -39,7 +40,10 @@ export function useTmdbMovies(){
 
     useEffect(()=>{
         const timer = setTimeout(async()=>{
-            if(search.trim() === "") return
+            if(search.trim() === "") {
+                LoadingMovies()
+                return
+            }
 
             try{
                 setLoading(true)

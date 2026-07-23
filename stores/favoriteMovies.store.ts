@@ -41,6 +41,8 @@ export const useFavoriteMoviesStore = create<FavoriteMoviesStore>((set, get)=>({
         set((state) => ({
             moviesLoved: state.moviesLoved.filter((movie) => movie.id !== id)
         }))
+
+        toast.success("Pelicula eliminada con exito")
     },
 
 

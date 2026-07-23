@@ -1,13 +1,16 @@
 import { Movie } from "@/types/movie.type"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 type Props = {
     movie: Movie
 }
 
 export function MovieCard({movie}: Props){
+    const router = useRouter()
+    
     return(
         <li 
-        key={movie.id} 
+        onClick={()=>router.push(`/watch/${movie.id}`)}
         className="
         flex flex-col items-center cursor-pointer hover:scale-110 transition-all duration-300
         group relative hover:z-20
@@ -27,7 +30,7 @@ export function MovieCard({movie}: Props){
             rounded-b-lg p-4
             "
             >
-                <h3 className="font-semibold text-white">
+                <h3 className="font-semibold">
                     {movie.title}
                 </h3>
 
