@@ -8,14 +8,17 @@ export function useTmdbMovies(){
     const [rankedMovies, setRankedMovies] = useState<Movie[]>([])
     const [search, setSearch] = useState("")
     const [loading, setLoading] = useState(false)
+    const [page, setPage] = useState(1)
+    const [totalPages, setTotalPage] = useState(1)
 
     async function loadPopularMovies() {
         try{
             setLoading(true)
 
-            const data = await getPopularMovies()
+            const data = await getPopularMovies(page)
 
-            setMovies ( data )
+            setMovies ( data.results )
+            setTotalPage( data.total_pages)
         }finally{
             setLoading(false)
         }
@@ -35,32 +38,42 @@ export function useTmdbMovies(){
 
     useEffect(()=>{
         loadRankedDayMovies()
-        loadPopularMovies()
     },[])
 
     useEffect(()=>{
-        const timer = setTimeout(async()=>{
-            if(search.trim() === "") {
-                LoadingMovies()
-                return
-            }
+        loadPopularMovies()
+    },[page])
 
+    useEffect(()=>{
+        const timer = setTimeout(async()=>{
             try{
                 setLoading(true)
-                const data = await searchMovies(search)
-                setMovies(data)
+
+                if(search.trim() === "") {
+                    const data = await getPopularMovies(page)
+                    setMovies(data.results)
+                    setTotalPage(data.total_pages)
+                    
+                }else{
+                    const data = await searchMovies(search, page)
+                    setMovies(data.results)
+                    setTotalPage(data.total_pages)
+                }
             }finally{
                 setLoading(false)
             }
         },500)
         return () => clearTimeout(timer)
-    },[search])
+    },[search, page])
 
     return {
         movies,
         search,
         setSearch,
         loading,
-        rankedMovies
+        rankedMovies,
+        page,
+        totalPages,
+        setPage
     }
 }

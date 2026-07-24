@@ -11,7 +11,7 @@ export interface Movie{
 export interface MoviesResponse {
     page: number,
     results: Movie[],
-    total_page: number,
+    total_pages: number,
     total_results: number
 }
 

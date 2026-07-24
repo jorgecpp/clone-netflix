@@ -22,7 +22,7 @@ export function NavbarMobile (){
                     <ul>
                         {
                             ItemsNavbar.map(item=>(
-                                <li className="p-4 hover:bg-zinc-500 transition-all duration-300"><Link key={item.name} href={item.link}>{item.name}</Link></li>
+                                <li key={item.name} className="p-4 hover:bg-zinc-500 transition-all duration-300"><Link key={item.name} href={item.link}>{item.name}</Link></li>
                             ))
                         }
                     </ul>
