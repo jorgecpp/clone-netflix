@@ -68,23 +68,23 @@ export async function getMovieGenres() {
     return data.genres
 }
 
-export async function getSeries(){
+export async function getSeries(page = 1){
     const response = await fetch(
-        'https://api.themoviedb.org/3/discover/tv',
+        `https://api.themoviedb.org/3/discover/tv?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc`,
         options
     )
     const data: SeriesResponse = await response.json()
 
-    return data.results
+    return data
 }
 
-export async function searchSeries(query: string) {
+export async function searchSeries(query: string, page = 1) {
     const response = await fetch(
-        `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=1`,
+        `https://api.themoviedb.org/3/search/tv?query=${query}&include_adult=false&language=en-US&page=${page}`,
         options
     )
 
     const data: SeriesResponse = await response.json()
 
-    return data.results
+    return data
 }

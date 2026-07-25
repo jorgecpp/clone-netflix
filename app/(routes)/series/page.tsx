@@ -2,12 +2,13 @@
 import { MovieGridSkeleton } from "@/components/movies/MovieGridSkeleton";
 import { SeriesGrid } from "@/components/series/SeriesGrid";
 import { Navbar } from "@/components/shared/navBar";
+import { PaginationMedia } from "@/components/shared/pagination/PaginationMedia";
 import { Input } from "@/components/ui/input";
 import { useTmdbSeries } from "@/hooks/useTmdbSeries";
 
 
 export default function SeriesPage(){
-    const { loading, series, search, setSearch } = useTmdbSeries()
+    const { loading, series, search, setSearch, page, setPage, totalPages, previousPage, nextPage } = useTmdbSeries()
 
     return(
         <>
@@ -35,6 +36,13 @@ export default function SeriesPage(){
                     )}
                 </section>
                 
+                <PaginationMedia
+                page={page}
+                nextPage={nextPage}
+                previousPage={previousPage}
+                totalPages={totalPages}
+                setPage={setPage}
+                />
             </main>
         </>
     )

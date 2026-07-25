@@ -49,6 +49,7 @@ export interface Serie {
 }
 
 export interface SeriesResponse {
-    id: number,
+    page: number,
+    total_pages: number,
     results: Serie[]
 }
